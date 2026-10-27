@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-SPPD & Surat Tugas - BAPPEDA Kabupaten Manggarai Barat</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        govNavy: '#0F2C59',
+                        govBlue: '#1E56A0',
+                        govGold: '#D4AF37',
+                        govGoldHover: '#B89628',
+                        govLight: '#F8FAFC',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; }
+        
+        /* Print Stylesheet for Official Document Preview */
+        @media print {
+            body * { visibility: hidden; }
+            #printableModalContent, #printableModalContent * { visibility: visible; }
+            #printableModalContent {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                margin: 0;
+                padding: 20px;
+                background: white;
+                color: black;
+                box-shadow: none !important;
+            }
+            .no-print { display: none !important; }
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="text-slate-800 flex flex-col min-h-screen">
+
+    <!-- Top Notification Bar -->
+    <div class="bg-govNavy text-slate-200 text-xs py-1 px-4 flex justify-between items-center border-b border-blue-900/50">
+        <div class="flex items-center space-x-3">
+            <span><i class="fa-solid fa-location-dot text-govGold mr-1"></i> Labuan Bajo, Kabupaten Manggarai Barat, NTT</span>
+            <span class="hidden md:inline">|</span>
+            <span class="hidden md:inline"><i class="fa-solid fa-clock mr-1"></i> Jam Layanan: Senin - Jumat (08.00 - 16.00 WITA)</span>
+        </div>
+        <div class="flex items-center space-x-3">
+            <span id="liveClock" class="font-mono font-medium text-govGold">--:--:-- WITA</span>
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="bg-gradient-to-r from-govNavy via-govBlue to-govNavy text-white shadow-xl sticky top-0 z-30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo & Agency Name -->
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-14 bg-white/10 rounded-lg p-1.5 backdrop-blur-sm border border-white/20 flex items-center justify-center flex-shrink-0">
+                        <svg viewBox="0 0 100 120" class="w-full h-full drop-shadow">
+                            <path d="M50,5 L90,25 L90,70 L50,115 L10,70 L10,25 Z" fill="#1E56A0" stroke="#D4AF37" stroke-width="4"/>
+                            <path d="M20,65 L50,30 L80,65 Z" fill="#D4AF37" opacity="0.8"/>
+                            <path d="M30,75 C30,60 70,60 70,75 Z" fill="#ffffff" />
+                            <circle cx="50" cy="45" r="8" fill="#D4AF37"/>
+                            <polygon points="50,12 53,20 62,20 55,25 57,33 50,28 43,33 45,25 38,20 47,20" fill="#FFF"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-xs sm:text-sm tracking-widest text-govGold font-bold uppercase">PEMERINTAH KABUPATEN MANGGARAI BARAT</h1>
+                        <h2 class="text-base sm:text-xl font-extrabold tracking-wide text-white">BADAN PERENCANAAN PEMBANGUNAN DAERAH</h2>
+                        <p class="text-[11px] text-slate-300">Sistem Informasi Riwayat & Pengadministrasian Dinas (E-SPPD BAPPEDA)</p>
+                    </div>
+                </div>
+
+                <!-- User Profile & Status -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="text-right">
+                        <div class="text-sm font-semibold text-white">Dra. Maria A. M. Teme</div>
+                        <div class="text-xs text-govGold font-medium">Kepala BAPPEDA Manggarai Barat</div>
+                    </div>
+                    <div class="relative">
+                        <div class="w-10 h-10 rounded-full bg-govGold text-govNavy font-bold flex items-center justify-center border-2 border-white shadow">
+                            KAB
+                        </div>
+                        <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <nav class="bg-slate-900/40 backdrop-blur-md border-t border-white/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex space-x-1 overflow-x-auto custom-scrollbar py-2">
+                    <button onclick="switchTab('dashboard')" id="nav-dashboard" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold flex items-center space-x-2 transition bg-govGold text-govNavy shadow">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        <span>Dashboard Monitoring</span>
+                    </button>
+                    <button onclick="switchTab('riwayat-dinas')" id="nav-riwayat-dinas" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold flex items-center space-x-2 transition text-slate-300 hover:text-white hover:bg-white/10">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <span>Riwayat Perjalanan Dinas</span>
+                    </button>
+                    <button onclick="switchTab('surat-tugas')" id="nav-surat-tugas" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold flex items-center space-x-2 transition text-slate-300 hover:text-white hover:bg-white/10">
+                        <i class="fa-solid fa-file-signature"></i>
+                        <span>Pengajuan & Surat Tugas</span>
+                    </button>
+                    <button onclick="switchTab('data-pegawai')" id="nav-data-pegawai" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold flex items-center space-x-2 transition text-slate-300 hover:text-white hover:bg-white/10">
+                        <i class="fa-solid fa-users"></i>
+                        <span>Data Pegawai BAPPEDA (35)</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- TAB 1: DASHBOARD MONITORING -->
+        <section id="tab-dashboard" class="tab-content space-y-6">
+            <!-- Header Filter -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+                <div>
+                    <h2 class="text-lg font-bold text-govNavy">Dashboard Pemantauan Operasional Perjalanan Dinas</h2>
+                    <p class="text-xs text-slate-500">Statistik penerbitan Surat Tugas, frekuensi perjalanan dinas, dan keaktifan pegawai BAPPEDA Tahun 2026</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <select id="filterTahun" class="bg-slate-50 border border-slate-300 text-slate-700 text-xs rounded-lg p-2 focus:ring-govBlue">
+                        <option value="2026">Tahun 2026</option>
+                        <option value="2025">Tahun 2025</option>
+                    </select>
+                    <button onclick="refreshDashboard()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-2 rounded-lg text-xs font-semibold flex items-center space-x-1 border border-slate-300">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                        <span>Refresh</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stat Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                <!-- Card 1 -->
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Total Surat Tugas</span>
+                        <div class="w-9 h-9 rounded-lg bg-blue-50 text-govBlue flex items-center justify-center">
+                            <i class="fa-solid fa-file-contract"></i>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <div id="statTotalST" class="text-2xl font-black text-govNavy">0</div>
+                        <span class="text-[11px] text-emerald-600 font-medium"><i class="fa-solid fa-check-circle mr-1"></i>Terdaftar resmi</span>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">SPPD Selesai</span>
+                        <div class="w-9 h-9 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <div id="statTotalSelesai" class="text-2xl font-black text-emerald-600">0</div>
+                        <span class="text-[11px] text-slate-500 font-medium">Tugas Selesai Terlaksana</span>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Sedang Dinas Aktif</span>
+                        <div class="w-9 h-9 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">
+                            <i class="fa-solid fa-user-clock"></i>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <div id="statSedangDinas" class="text-2xl font-black text-amber-600">0</div>
+                        <span class="text-[11px] text-amber-700 font-medium"><i class="fa-solid fa-circle text-[8px] mr-1"></i>Di Lapangan / Luar Daerah</span>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Total Pegawai</span>
+                        <div class="w-9 h-9 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <div id="statTotalPegawai" class="text-2xl font-black text-govNavy">35</div>
+                        <span class="text-[11px] text-slate-500 font-medium">Pegawai BAPPEDA 2026</span>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Akumulasi Hari Dinas</span>
+                        <div class="w-9 h-9 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center">
+                            <i class="fa-solid fa-calendar-days"></i>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <div id="statTotalHariDinas" class="text-2xl font-black text-purple-600">0 Hari</div>
+                        <span class="text-[11px] text-slate-500 font-medium">Durasi Keseluruhan Penugasan</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Chart 1: Frekuensi Per Bidang -->
+                <div class="lg:col-span-2 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-sm font-bold text-govNavy flex items-center">
+                            <i class="fa-solid fa-chart-column mr-2 text-govBlue"></i>
+                            Frekuensi Perjalanan Dinas Menurut Bidang / Subbag (2026)
+                        </h3>
+                        <span class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600">Jumlah Penugasan</span>
+                    </div>
+                    <div class="h-64 relative">
+                        <canvas id="chartBidang"></canvas>
+                    </div>
+                </div>
+
+                <!-- Chart 2: Jenis Perjalanan -->
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-sm font-bold text-govNavy flex items-center">
+                            <i class="fa-solid fa-map-location-dot mr-2 text-govGold"></i>
+                            Kategori Wilayah Dinas
+                        </h3>
+                    </div>
+                    <div class="h-64 relative flex items-center justify-center">
+                        <canvas id="chartWilayah"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status Breakdown & Recent List -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="text-sm font-bold text-govNavy mb-4 flex items-center">
+                        <i class="fa-solid fa-bars-progress mr-2 text-indigo-600"></i>
+                        Status Persetujuan SPPD
+                    </h3>
+                    <div class="h-52 relative flex items-center justify-center">
+                        <canvas id="chartStatus"></canvas>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-2 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-sm font-bold text-govNavy flex items-center">
+                            <i class="fa-solid fa-list-check mr-2 text-emerald-600"></i>
+                            Aktivitas Penugasan Dinas Terbaru
+                        </h3>
+                        <button onclick="switchTab('riwayat-dinas')" class="text-xs font-semibold text-govBlue hover:underline">Lihat Seluruh Riwayat &rarr;</button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-xs text-left">
+                            <thead class="bg-slate-50 text-slate-600 font-semibold border-b">
+                                <tr>
+                                    <th class="p-2.5">No. Surat</th>
+                                    <th class="p-2.5">Pelaksana Utama</th>
+                                    <th class="p-2.5">Tujuan</th>
+                                    <th class="p-2.5">Durasi</th>
+                                    <th class="p-2.5">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dashTableRecent" class="divide-y divide-slate-100">
+                                <!-- Dynamic rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- TAB 2: RIWAYAT PERJALANAN DINAS -->
+        <section id="tab-riwayat-dinas" class="tab-content hidden space-y-6">
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-lg font-bold text-govNavy">Riwayat Perjalanan Dinas Pegawai</h2>
+                    <p class="text-xs text-slate-500">Log histori lengkap pelaksanaan Surat Tugas dan SPPD Pegawai BAPPEDA Kabupaten Manggarai Barat</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <input type="text" id="searchRiwayat" onkeyup="filterRiwayatTable()" placeholder="Cari nama pegawai / tujuan / maksud..." class="px-3 py-1.5 text-xs bg-slate-50 border border-slate-300 rounded-lg focus:ring-govBlue">
+                    <select id="filterRiwayatPegawai" onchange="filterRiwayatTable()" class="px-3 py-1.5 text-xs bg-slate-50 border border-slate-300 rounded-lg focus:ring-govBlue max-w-xs">
+                        <option value="ALL">Semua Pegawai (35)</option>
+                        <!-- Dynamic options -->
+                    </select>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-xs text-left border-collapse">
+                        <thead class="bg-govNavy text-white font-semibold">
+                            <tr>
+                                <th class="p-3 w-10 text-center">No</th>
+                                <th class="p-3">Nomor Surat Tugas</th>
+                                <th class="p-3">Pegawai Ditugaskan</th>
+                                <th class="p-3">Maksud Perjalanan Dinas</th>
+                                <th class="p-3">Tujuan</th>
+                                <th class="p-3">Tanggal & Durasi</th>
+                                <th class="p-3 text-center">Kategori</th>
+                                <th class="p-3 text-center">Status Hari Ini</th>
+                            </tr>
+                        </thead>
+                        <tbody id="riwayatTableBody" class="divide-y divide-slate-200">
+                            <!-- Dynamic rows -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- TAB 3: SURAT TUGAS & SPPD -->
+        <section id="tab-surat-tugas" class="tab-content hidden space-y-6">
+            <!-- Header Action & Filter -->
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-lg font-bold text-govNavy">Pengajuan & Administrasi Surat Tugas</h2>
+                    <p class="text-xs text-slate-500">Penerbitan dokumen resmi Surat Tugas & SPPD untuk 35 Pegawai BAPPEDA</p>
+                </div>
+                <button onclick="openFormSTModal()" class="bg-govBlue hover:bg-govNavy text-white px-4 py-2 rounded-lg text-xs font-bold flex items-center justify-center space-x-2 shadow transition">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Buat Surat Tugas Baru</span>
+                </button>
+            </div>
+
+            <!-- Filters -->
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex flex-wrap items-center justify-between gap-3">
+                <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
+                    <div class="relative w-full md:w-64">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>
+                        <input type="text" id="searchST" onkeyup="filterSTTable()" placeholder="Cari No ST, Nama, Tujuan..." class="pl-8 pr-3 py-1.5 text-xs bg-slate-50 border border-slate-300 rounded-lg w-full focus:ring-govBlue">
+                    </div>
+                    <select id="filterStatusST" onchange="filterSTTable()" class="text-xs bg-slate-50 border border-slate-300 text-slate-700 rounded-lg p-1.5 focus:ring-govBlue">
+                        <option value="ALL">Semua Status</option>
+                        <option value="Disetujui">Disetujui / Aktif</option>
+                        <option value="Menunggu Persetujuan">Menunggu Persetujuan</option>
+                        <option value="Selesai">Selesai</option>
+                    </select>
+                </div>
+                <div class="text-xs text-slate-500 font-medium">
+                    Menampilkan <span id="stCountDisplay" class="font-bold text-govNavy">0</span> Dokumen
+                </div>
+            </div>
+
+            <!-- Data Table -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-xs text-left border-collapse">
+                        <thead class="bg-govNavy text-white font-semibold">
+                            <tr>
+                                <th class="p-3 w-10 text-center">No</th>
+                                <th class="p-3">Nomor Surat Tugas</th>
+                                <th class="p-3">Maksud Perjalanan Dinas</th>
+                                <th class="p-3">Pelaksana / Pegawai</th>
+                                <th class="p-3">Tujuan</th>
+                                <th class="p-3">Tanggal Pelaksanaan</th>
+                                <th class="p-3 text-center">Status</th>
+                                <th class="p-3 text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="stTableBody" class="divide-y divide-slate-200">
+                            <!-- Dynamic rows via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- TAB 4: DATA PEGAWAI BAPPEDA (35 DATA) -->
+        <section id="tab-data-pegawai" class="tab-content hidden space-y-6">
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex justify-between items-center">
+                <div>
+                    <h2 class="text-lg font-bold text-govNavy">Daftar Resmi Pegawai BAPPEDA Manggarai Barat (2026)</h2>
+                    <p class="text-xs text-slate-500">Master Data 35 Pegawai beserta Rekapitulasi Frekuensi Dinas & Total Hari Penugasan</p>
+                </div>
+                <div class="text-xs font-semibold bg-govNavy text-white px-3 py-1.5 rounded-lg">
+                    Total: 35 Pegawai
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-xs text-left border-collapse">
+                        <thead class="bg-slate-800 text-white font-semibold">
+                            <tr>
+                                <th class="p-3 text-center w-10">No</th>
+                                <th class="p-3">Nama Pegawai & NIP</th>
+                                <th class="p-3">Pangkat / Golongan</th>
+                                <th class="p-3">Jabatan / Peran</th>
+                                <th class="p-3">Bidang / Subbagian</th>
+                                <th class="p-3 text-center">Frekuensi Dinas</th>
+                                <th class="p-3 text-center">Total Hari Dinas</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pegawaiTableBody" class="divide-y divide-slate-200">
+                            <!-- Dynamic 35 Officers -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-govNavy text-slate-400 text-xs py-6 border-t border-slate-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center sm:flex sm:justify-between sm:text-left">
+            <div>
+                <p class="font-bold text-white mb-1">BADAN PERENCANAAN PEMBANGUNAN DAERAH (BAPPEDA)</p>
+                <p>Pemerintah Kabupaten Manggarai Barat - Nusa Tenggara Timur</p>
+                <p class="text-slate-500 text-[11px] mt-1">Jl. Sernaru, Labuan Bajo, Komodo, Kabupaten Manggarai Barat, NTT 86754</p>
+            </div>
+            <div class="mt-4 sm:mt-0 text-right">
+                <p>&copy; 2026 E-SPPD BAPPEDA MANGGARAI BARAT</p>
+                <p class="text-govGold mt-1">Sistem Informasi Pengadministrasian Perjalanan Dinas</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- MODAL 1: FORM TAMBAH SURAT TUGAS BARU -->
+    <div id="modalFormST" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4 overflow-y-auto">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-3xl w-full max-h-[90vh] flex flex-col overflow-hidden my-auto border border-slate-200">
+            <!-- Modal Header -->
+            <div class="bg-govNavy text-white px-6 py-4 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-file-circle-plus text-govGold text-lg"></i>
+                    <h3 class="font-bold text-base" id="modalSTTitle">Input Pengajuan Surat Tugas Baru</h3>
+                </div>
+                <button onclick="closeFormSTModal()" class="text-slate-300 hover:text-white transition">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Modal Form Body -->
+            <form id="stForm" onsubmit="handleFormSTSubmit(event)" class="p-6 overflow-y-auto custom-scrollbar space-y-4 text-xs">
+                <input type="hidden" id="formSTIndex" value="-1">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Nomor Surat Tugas <span class="text-rose-500">*</span></label>
+                        <input type="text" id="inputNoSurat" required placeholder="000.1.2/BAPPEDA/045/I/2026" class="w-full p-2 border border-slate-300 rounded-lg focus:ring-govBlue">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Tanggal Terbit Surat <span class="text-rose-500">*</span></label>
+                        <input type="date" id="inputTglSurat" required class="w-full p-2 border border-slate-300 rounded-lg focus:ring-govBlue">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Maksud / Keperluan Perjalanan Dinas <span class="text-rose-500">*</span></label>
+                    <textarea id="inputMaksud" rows="2" required placeholder="Contoh: Koordinasi Usulan Dana Alokasi Khusus (DAK) Fisik TA 2027 bersama Kementerian PPN/Bappenas" class="w-full p-2 border border-slate-300 rounded-lg focus:ring-govBlue"></textarea>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Tempat Tujuan Dinas <span class="text-rose-500">*</span></label>
+                        <input type="text" id="inputTujuan" required placeholder="Macang Pacar / Kupang / Jakarta" class="w-full p-2 border border-slate-300 rounded-lg focus:ring-govBlue">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Kategori Wilayah <span class="text-rose-500">*</span></label>
+                        <select id="inputKategori" required class="w-full p-2 border border-slate-300 rounded-lg focus:ring-govBlue">
+                            <option value="Dalam Daerah (Kabupaten)">Dalam Daerah (Kab. Manggarai Barat)</option>
+                            <option value="Luar Daerah (Provinsi NTT)">Luar Daerah (Provinsi NTT)</option>
+                            <option value="Luar Daerah (Pusat / Nasional)">Luar Daerah (Pusat / Nasional)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Bidang Pemrakarsa <span class="text-rose-500">*</span></label>
+                        <select id="inputBidang" required class="w-full p-2 border border-slate-300 rounded-lg focus:ring-govBlue">
+                            <option value="Perencanaan, Pengendalian & Evaluasi">Perencanaan, Pengendalian & Evaluasi</option>
+                            <option value="Pemerintahan & Pembangunan Manusia">Pemerintahan & Pembangunan Manusia</option>
+                            <option value="Perekonomian, Infrastruktur & Kewilayahan">Perekonomian, Infrastruktur & Kewilayahan</option>
+                            <option value="Sekretariat BAPPEDA">Sekretariat BAPPEDA</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Tanggal Mulai <span class="text-rose-500">*</span></label>
+                        <input type="date" id="inputTglMulai" required class="w-full p-2 border border-slate-300 rounded-lg focus:ring-govBlue">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Tanggal Selesai <span class="text-rose-500">*</span></label>
+                        <input type="date" id="inputTglSelesai" required class="w-full p-2 border border-slate-300 rounded-lg focus:ring-govBlue">
+                    </div>
+                </div>
+
+                <!-- 35 Officers Checkbox Selection -->
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Pilih Pegawai BAPPEDA Yang Ditugaskan (Bisa Pilih Banyak) <span class="text-rose-500">*</span></label>
+                    <div id="pegawaiCheckboxList" class="bg-slate-50 border border-slate-300 rounded-lg p-3 max-h-48 overflow-y-auto space-y-2 custom-scrollbar">
+                        <!-- Populated with 35 officers by JS -->
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Pejabat Penandatangan Surat <span class="text-rose-500">*</span></label>
+                    <select id="inputPenandatangan" required class="w-full p-2 border border-slate-300 rounded-lg focus:ring-govBlue">
+                        <option value="Dra. Maria A. M. Teme">Dra. Maria A. M. Teme (Kepala BAPPEDA)</option>
+                        <option value="Karolus Din, S.S.">Karolus Din, S.S. (Sekretaris BAPPEDA)</option>
+                    </select>
+                </div>
+
+                <div class="pt-4 border-t flex justify-end space-x-2">
+                    <button type="button" onclick="closeFormSTModal()" class="px-4 py-2 bg-slate-200 text-slate-700 rounded-lg hover:bg-slate-300 font-semibold transition">Batal</button>
+                    <button type="submit" class="px-5 py-2 bg-govBlue text-white rounded-lg hover:bg-govNavy font-semibold shadow transition">Simpan & Terbitkan Surat</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- MODAL 2: OFFICIAL PREVIEW & PRINT DOKUMEN SURAT TUGAS -->
+    <div id="modalPrintPreview" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 flex items-center justify-center hidden p-2 sm:p-4 overflow-y-auto">
+        <div class="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[95vh] flex flex-col overflow-hidden my-auto border border-slate-200">
+            <!-- Modal Header -->
+            <div class="bg-slate-800 text-white px-6 py-3 flex items-center justify-between no-print">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-print text-govGold"></i>
+                    <h3 class="font-bold text-sm">Pratinjau Dokumen Resmi Surat Tugas & SPPD</h3>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <button onclick="window.print()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-lg text-xs font-bold flex items-center space-x-1 shadow">
+                        <i class="fa-solid fa-print"></i>
+                        <span>Cetak Dokumen</span>
+                    </button>
+                    <button onclick="closePrintModal()" class="text-slate-400 hover:text-white transition">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modal Printable Area -->
+            <div class="p-8 overflow-y-auto custom-scrollbar bg-white" id="printableModalContent">
+                <!-- OFFICIAL KOP SURAT PEMKAB MANGGARAI BARAT -->
+                <div class="border-b-4 border-double border-black pb-3 mb-6 flex items-center space-x-4">
+                    <div class="w-20 h-24 flex items-center justify-center flex-shrink-0">
+                        <svg viewBox="0 0 100 120" class="w-full h-full">
+                            <path d="M50,5 L90,25 L90,70 L50,115 L10,70 L10,25 Z" fill="#1E56A0" stroke="#000" stroke-width="3"/>
+                            <path d="M20,65 L50,30 L80,65 Z" fill="#D4AF37"/>
+                            <circle cx="50" cy="45" r="8" fill="#FFF"/>
+                            <polygon points="50,12 53,20 62,20 55,25 57,33 50,28 43,33 45,25 38,20 47,20" fill="#000"/>
+                        </svg>
+                    </div>
+                    <div class="text-center flex-grow">
+                        <h2 class="text-base font-bold uppercase tracking-wide">PEMERINTAH KABUPATEN MANGGARAI BARAT</h2>
+                        <h1 class="text-xl font-extrabold uppercase tracking-widest text-black">BADAN PERENCANAAN PEMBANGUNAN DAERAH</h1>
+                        <p class="text-xs">Jln. Sernaru, Labuan Bajo, Komodo, Kode Pos 86754</p>
+                        <p class="text-xs">Website: bappeda.manggaraibaratkab.go.id | Email: bappeda@manggaraibaratkab.go.id</p>
+                    </div>
+                </div>
+
+                <!-- TITLE SURAT TUGAS -->
+                <div class="text-center mb-6">
+                    <h3 class="text-base font-bold underline tracking-wider uppercase">SURAT TUGAS</h3>
+                    <p class="text-xs font-semibold">Nomor: <span id="printNoSurat">--</span></p>
+                </div>
+
+                <!-- BODY SURAT -->
+                <div class="text-xs space-y-4 leading-relaxed text-justify text-slate-900">
+                    <p>Yang bertanda tangan di bawah ini:</p>
+                    <div class="pl-6 space-y-1">
+                        <div class="grid grid-cols-4">
+                            <span class="font-semibold">Nama</span>
+                            <span class="col-span-3">: <span id="printPenandatanganNama">Dra. Maria A. M. Teme</span></span>
+                        </div>
+                        <div class="grid grid-cols-4">
+                            <span class="font-semibold">NIP</span>
+                            <span class="col-span-3">: <span id="printPenandatanganNIP">19680517 199403 2 007</span></span>
+                        </div>
+                        <div class="grid grid-cols-4">
+                            <span class="font-semibold">Jabatan</span>
+                            <span class="col-span-3">: Kepala Badan Perencanaan Pembangunan Daerah</span>
+                        </div>
+                    </div>
+
+                    <p>MEMERINTAHKAN:</p>
+
+                    <p><span class="font-semibold">Kepada Pegawai / Pelaksana Perjalanan Dinas berikut:</span></p>
+                    <table class="w-full border-collapse border border-black text-xs">
+                        <thead>
+                            <tr class="bg-slate-100">
+                                <th class="border border-black p-1.5 w-8 text-center">No</th>
+                                <th class="border border-black p-1.5">Nama / NIP</th>
+                                <th class="border border-black p-1.5">Pangkat / Gol.</th>
+                                <th class="border border-black p-1.5">Jabatan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="printPegawaiList">
+                            <!-- Dynamic Print Pegawai -->
+                        </tbody>
+                    </table>
+
+                    <div class="space-y-2 pt-2">
+                        <div class="grid grid-cols-4">
+                            <span class="font-semibold">Untuk Maksud</span>
+                            <span class="col-span-3">: <span id="printMaksud" class="font-medium">--</span></span>
+                        </div>
+                        <div class="grid grid-cols-4">
+                            <span class="font-semibold">Tempat Tujuan</span>
+                            <span class="col-span-3">: <span id="printTujuan" class="font-bold">--</span></span>
+                        </div>
+                        <div class="grid grid-cols-4">
+                            <span class="font-semibold">Lamanya Dinas</span>
+                            <span class="col-span-3">: <span id="printLamaHari">--</span> Hari (<span id="printTanggalMulai">--</span> s/d <span id="printTanggalSelesai">--</span>)</span>
+                        </div>
+                    </div>
+
+                    <p class="pt-2">Demikian Surat Tugas ini diberikan untuk dilaksanakan dengan penuh rasa tanggung jawab dan melaporkan hasilnya setelah selesai melaksanakan tugas.</p>
+                </div>
+
+                <!-- TANDA TANGAN SECTION -->
+                <div class="mt-12 flex justify-end">
+                    <div class="text-center w-64 text-xs">
+                        <p>Dikeluarkan di: Labuan Bajo</p>
+                        <p class="mb-1">Pada Tanggal: <span id="printTglTerbit">--</span></p>
+                        <p class="font-bold mt-2">KEPALA BAPPEDA KAB. MANGGARAI BARAT</p>
+                        <div class="h-20 flex items-center justify-center italic text-slate-400">
+                            [Tanda Tangan & Cap Dinas]
+                        </div>
+                        <p class="font-bold underline" id="printTtdNamaFooter">Dra. MARIA A. M. TEME</p>
+                        <p id="printTtdGolFooter">Pembina Utama Muda IV/c</p>
+                        <p id="printTtdNipFooter">NIP. 19680517 199403 2 007</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- TOAST NOTIFICATION SYSTEM -->
+    <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col space-y-2 pointer-events-none"></div>
+
+
+    <!-- JAVASCRIPT APPLICATION LOGIC -->
+    <script>
+        // Official 35 BAPPEDA Manggarai Barat Employee Master Data
+        let pegawaiData = [
+            { id: 1, nama: 'Dra. Maria A. M. Teme', jabatan: 'Kepala Badan', gol: 'Pembina Utama Muda IV/c', nip: '19680517 199403 2 007', bidang: 'Sekretariat BAPPEDA', totalDinas: 3, totalHari: 9 },
+            { id: 2, nama: 'Karolus Din, S.S.', jabatan: 'Sekretaris Badan', gol: 'Pembina IV/a', nip: '19780105 200501 1 011', bidang: 'Sekretariat BAPPEDA', totalDinas: 4, totalHari: 12 },
+            { id: 3, nama: 'Ir. Fransiskus Xaverius Harsini', jabatan: 'Kabid Perencanaan, Pengendalian dan Evaluasi Pembangunan Daerah', gol: 'Pembina IV/a', nip: '19741203 200604 1 005', bidang: 'Perencanaan, Pengendalian & Evaluasi', totalDinas: 5, totalHari: 16 },
+            { id: 4, nama: 'Fransiskus N. T. D. C. S. Harum, S.T.', jabatan: 'Kabid Pemerintahan dan Pembangunan Manusia', gol: 'Pembina IV/a', nip: '19801124 200501 1 008', bidang: 'Pemerintahan & Pembangunan Manusia', totalDinas: 4, totalHari: 11 },
+            { id: 5, nama: 'Yohanes B. L. Cembes, S.T.', jabatan: 'Kabid Perekonomian, Infrastruktur dan Kewilayahan', gol: 'Pembina IV/a', nip: '19810624 200804 1 001', bidang: 'Perekonomian, Infrastruktur & Kewilayahan', totalDinas: 6, totalHari: 18 },
+            { id: 6, nama: 'Maria Magdalena Sukartin, SE', jabatan: 'Perencana Ahli Muda', gol: 'Penata Tk. I III/d', nip: '19810526 200604 2 026', bidang: 'Perencanaan, Pengendalian & Evaluasi', totalDinas: 2, totalHari: 6 },
+            { id: 7, nama: 'Maria Yosephina A. R. Jem, S.Pi', jabatan: 'Perencana Ahli Muda', gol: 'Penata Tk. I III/d', nip: '19790319 200801 2 023', bidang: 'Perekonomian, Infrastruktur & Kewilayahan', totalDinas: 3, totalHari: 9 },
+            { id: 8, nama: 'Robertus P. Haryono, S.STP', jabatan: 'Perencana Ahli Muda', gol: 'Penata Tk. I III/d', nip: '19890606 201010 1 001', bidang: 'Pemerintahan & Pembangunan Manusia', totalDinas: 3, totalHari: 8 },
+            { id: 9, nama: 'Ignasius D. A. Dula, S.Si', jabatan: 'Perencana Ahli Muda', gol: 'Penata III/c', nip: '19890731 201503 1 002', bidang: 'Perencanaan, Pengendalian & Evaluasi', totalDinas: 2, totalHari: 5 },
+            { id: 10, nama: 'Ignasius B. M. Rahmat, S.T.', jabatan: 'Perencana Ahli Muda', gol: 'Penata III/c', nip: '19860731 201503 1 004', bidang: 'Perekonomian, Infrastruktur & Kewilayahan', totalDinas: 4, totalHari: 10 },
+            { id: 11, nama: 'Paulus K. S. Jelahu, S.AP', jabatan: 'Kasubbag Umum dan Kepegawaian', gol: 'Penata III/c', nip: '19851025 201001 1 028', bidang: 'Sekretariat BAPPEDA', totalDinas: 5, totalHari: 14 },
+            { id: 12, nama: 'Maria O. S. K. Djehana, SE', jabatan: 'Analis Kebijakan Ahli Muda', gol: 'Penata III/c', nip: '19881005 201101 2 009', bidang: 'Pemerintahan & Pembangunan Manusia', totalDinas: 2, totalHari: 6 },
+            { id: 13, nama: 'Elisabeth S. E. Rahayu, S.E.', jabatan: 'Perencana Ahli Muda', gol: 'Penata III/c', nip: '19910903 201503 2 003', bidang: 'Perencanaan, Pengendalian & Evaluasi', totalDinas: 3, totalHari: 7 },
+            { id: 14, nama: 'Siprianus N. T. M. Haman, SE', jabatan: 'Kasubbag Perencanaan dan Keuangan', gol: 'Penata III/c', nip: '19880926 201503 1 003', bidang: 'Sekretariat BAPPEDA', totalDinas: 4, totalHari: 11 },
+            { id: 15, nama: 'Fransiska S. Lahu, ST', jabatan: 'Perencana Ahli Muda', gol: 'Penata III/c', nip: '19880402 201503 2 002', bidang: 'Perekonomian, Infrastruktur & Kewilayahan', totalDinas: 2, totalHari: 5 },
+            { id: 16, nama: 'Yosefina E. Bupu, S.T.', jabatan: 'Perencana Ahli Muda', gol: 'Penata III/c', nip: '19900319 201503 2 003', bidang: 'Perekonomian, Infrastruktur & Kewilayahan', totalDinas: 3, totalHari: 8 },
+            { id: 17, nama: 'Marianus K. Jelatu, S.P.', jabatan: 'Perencana Ahli Muda', gol: 'Penata III/c', nip: '19850505 201503 1 004', bidang: 'Pemerintahan & Pembangunan Manusia', totalDinas: 2, totalHari: 4 },
+            { id: 18, nama: 'Paulina S. R. Nanggur, S.Fil.', jabatan: 'Perencana Ahli Pertama', gol: 'Penata Muda Tk. I III/b', nip: '19830629 201503 2 002', bidang: 'Pemerintahan & Pembangunan Manusia', totalDinas: 1, totalHari: 3 },
+            { id: 19, nama: 'Adrianus M. B. R. Banggut, ST', jabatan: 'Perencana Ahli Pertama', gol: 'Penata Muda Tk. I III/b', nip: '19850325 201903 1 006', bidang: 'Perekonomian, Infrastruktur & Kewilayahan', totalDinas: 3, totalHari: 9 },
+            { id: 20, nama: 'Maria M. C. Gampur, ST', jabatan: 'Perencana Ahli Pertama', gol: 'Penata Muda Tk. I III/b', nip: '19890918 201903 2 009', bidang: 'Perencanaan, Pengendalian & Evaluasi', totalDinas: 2, totalHari: 6 },
+            { id: 21, nama: 'Maksimus A. Gunawan, S.Kom', jabatan: 'Perencana Ahli Pertama', gol: 'Penata Muda Tk. I III/b', nip: '19940822 201903 1 005', bidang: 'Perencanaan, Pengendalian & Evaluasi', totalDinas: 3, totalHari: 7 },
+            { id: 22, nama: 'Marselus A. Ganggur, S.Kom', jabatan: 'Perencana Ahli Pertama', gol: 'Penata Muda Tk. I III/b', nip: '19950314 201903 1 007', bidang: 'Sekretariat BAPPEDA', totalDinas: 2, totalHari: 5 },
+            { id: 23, nama: 'Fransiskus X. D. Rahmat, S.E.', jabatan: 'Perencana Ahli Pertama', gol: 'Penata Muda Tk. I III/b', nip: '19911203 202012 1 009', bidang: 'Perekonomian, Infrastruktur & Kewilayahan', totalDinas: 1, totalHari: 3 },
+            { id: 24, nama: 'Melania N. I. Rupa, S.Stat.', jabatan: 'Perencana Ahli Pertama', gol: 'Penata Muda Tk. I III/b', nip: '19970104 202012 2 015', bidang: 'Perencanaan, Pengendalian & Evaluasi', totalDinas: 2, totalHari: 6 },
+            { id: 25, nama: 'Karolina R. M. N. Raga, A.Md.', jabatan: 'Pengelola Bahan Perencanaan', gol: 'Pengatur III/a', nip: '19950524 202012 2 018', bidang: 'Perencanaan, Pengendalian & Evaluasi', totalDinas: 1, totalHari: 2 },
+            { id: 26, nama: 'Dominikus S. Mbabho, S.Si', jabatan: 'Perencana Ahli Pertama', gol: 'Penata Muda III/a', nip: '19971004 202421 1 009', bidang: 'Pemerintahan & Pembangunan Manusia', totalDinas: 2, totalHari: 5 },
+            { id: 27, nama: 'Alexander E. S. K. D. C. Harum, S.T.', jabatan: 'Perencana Ahli Pertama', gol: 'Penata Muda III/a', nip: '19990812 202421 1 008', bidang: 'Perekonomian, Infrastruktur & Kewilayahan', totalDinas: 2, totalHari: 6 },
+            { id: 28, nama: 'Aprianus F. H. Sukarmin, S.Pd', jabatan: 'Perencana Ahli Pertama', gol: 'Penata Muda III/a', nip: '19920417 202421 1 018', bidang: 'Pemerintahan & Pembangunan Manusia', totalDinas: 1, totalHari: 3 },
+            { id: 29, nama: 'Adrianus G. F. Jebarus, S.T.', jabatan: 'Perencana Ahli Pertama', gol: 'Penata Muda III/a', nip: '19950826 202421 1 025', bidang: 'Perekonomian, Infrastruktur & Kewilayahan', totalDinas: 2, totalHari: 5 },
+            { id: 30, nama: 'Yohanes B. Suban, S.Kom', jabatan: 'Perencana Ahli Pertama', gol: 'Penata Muda III/a', nip: '19970624 202421 1 014', bidang: 'Sekretariat BAPPEDA', totalDinas: 1, totalHari: 3 },
+            { id: 31, nama: 'Hendrikus R. S. Wagut, S.AP', jabatan: 'Penata Laksana Bangunan Gedung dan Permukiman', gol: 'Penata Muda III/a', nip: '19960523 202421 1 011', bidang: 'Perekonomian, Infrastruktur & Kewilayahan', totalDinas: 2, totalHari: 6 },
+            { id: 32, nama: 'Marianus O. S. Sembara, S.Pd', jabatan: 'Penata Kelola Sistem dan Teknologi Informasi', gol: 'Penata Muda III/a', nip: '19981014 202421 1 008', bidang: 'Sekretariat BAPPEDA', totalDinas: 2, totalHari: 4 },
+            { id: 33, nama: 'Silvester D. Harum, A.Md.', jabatan: 'Pengelola Pelayanan Kesehatan', gol: 'Pengatur Tk. I II/d', nip: '19951231 202421 1 014', bidang: 'Sekretariat BAPPEDA', totalDinas: 1, totalHari: 2 },
+            { id: 34, nama: 'Vinsensius C. P. Satria, A.Md.', jabatan: 'Pengelola Pelayanan Kesehatan', gol: 'Pengatur II/c', nip: '19980405 202421 1 011', bidang: 'Sekretariat BAPPEDA', totalDinas: 1, totalHari: 2 },
+            { id: 35, nama: 'Yohanes F. X. Katter, A.Md.T.', jabatan: 'Pengelola Pelayanan Kesehatan', gol: 'Pengatur II/c', nip: '20000309 202421 1 008', bidang: 'Sekretariat BAPPEDA', totalDinas: 1, totalHari: 2 }
+        ];
+
+        // Sample Official Travel Records Data
+        let suratTugasData = [
+            {
+                id: 1,
+                noSurat: '000.1.2/BAPPEDA/012/I/2026',
+                tglSurat: '2026-01-12',
+                maksud: 'Koordinasi Sinkronisasi Program DAK Fisik Pariwisata Super Prioritas Labuan Bajo bersama Bappenas RI',
+                tujuan: 'Jakarta Pusat',
+                kategori: 'Luar Daerah (Pusat / Nasional)',
+                bidang: 'Perencanaan, Pengendalian & Evaluasi',
+                tglMulai: '2026-01-15',
+                tglSelesai: '2026-01-18',
+                penandatangan: 'Dra. Maria A. M. Teme',
+                pegawaiIds: [1, 3, 6],
+                status: 'Selesai'
+            },
+            {
+                id: 2,
+                noSurat: '000.1.2/BAPPEDA/028/I/2026',
+                tglSurat: '2026-01-20',
+                maksud: 'Monitoring dan Evaluasi Lapangan Pembangunan Jalan Strategis Kecamatan Macang Pacar & Kuwus',
+                tujuan: 'Kecamatan Macang Pacar & Kuwus',
+                kategori: 'Dalam Daerah (Kabupaten)',
+                bidang: 'Perekonomian, Infrastruktur & Kewilayahan',
+                tglMulai: '2026-01-22',
+                tglSelesai: '2026-01-24',
+                penandatangan: 'Dra. Maria A. M. Teme',
+                pegawaiIds: [5, 10, 29],
+                status: 'Disetujui'
+            },
+            {
+                id: 3,
+                noSurat: '000.1.2/BAPPEDA/039/II/2026',
+                tglSurat: '2026-02-02',
+                maksud: 'Rapat Koordinasi Penyusunan RKPD Provinsi NTT TA 2027 di Kantor Bapperida NTT',
+                tujuan: 'Kota Kupang',
+                kategori: 'Luar Daerah (Provinsi NTT)',
+                bidang: 'Perencanaan, Pengendalian & Evaluasi',
+                tglMulai: '2026-02-05',
+                tglSelesai: '2026-02-08',
+                penandatangan: 'Karolus Din, S.S.',
+                pegawaiIds: [2, 9, 21],
+                status: 'Selesai'
+            },
+            {
+                id: 4,
+                noSurat: '000.1.2/BAPPEDA/051/II/2026',
+                tglSurat: '2026-02-10',
+                maksud: 'Pendataan Lapangan Stunting dan Kesehatan Masyarakat Desa Lembor Selatan',
+                tujuan: 'Lembor Selatan',
+                kategori: 'Dalam Daerah (Kabupaten)',
+                bidang: 'Pemerintahan & Pembangunan Manusia',
+                tglMulai: '2026-02-14',
+                tglSelesai: '2026-02-16',
+                penandatangan: 'Dra. Maria A. M. Teme',
+                pegawaiIds: [4, 8, 12, 17],
+                status: 'Menunggu Persetujuan'
+            }
+        ];
+
+        // Chart Instance Variables
+        let chartBidangInstance = null;
+        let chartWilayahInstance = null;
+        let chartStatusInstance = null;
+
+        // On Page Load
+        window.onload = function() {
+            startLiveClock();
+            populatePegawaiCheckboxList();
+            populateRiwayatPegawaiDropdown();
+            renderDashboardStats();
+            initCharts();
+            renderSTTable();
+            renderRiwayatTable();
+            renderPegawaiTable();
+        };
+
+        function startLiveClock() {
+            setInterval(() => {
+                const now = new Date();
+                document.getElementById('liveClock').textContent = now.toLocaleTimeString('id-ID') + ' WITA';
+            }, 1000);
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-govGold', 'text-govNavy', 'shadow');
+                btn.classList.add('text-slate-300', 'hover:bg-white/10');
+            });
+
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            const activeNav = document.getElementById(`nav-${tabId}`);
+            if (activeNav) {
+                activeNav.classList.add('bg-govGold', 'text-govNavy', 'shadow');
+                activeNav.classList.remove('text-slate-300', 'hover:bg-white/10');
+            }
+
+            if (tabId === 'dashboard') {
+                refreshDashboard();
+            }
+        }
+
+        function showToast(title, message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            const bgColor = type === 'success' ? 'bg-emerald-600' : 'bg-rose-600';
+            const icon = type === 'success' ? 'fa-circle-check' : 'fa-triangle-exclamation';
+
+            toast.className = `${bgColor} text-white p-3 rounded-xl shadow-xl flex items-start space-x-3 pointer-events-auto transform transition duration-300 ease-in-out translate-y-2 max-w-sm text-xs`;
+            toast.innerHTML = `
+                <i class="fa-solid ${icon} text-lg mt-0.5"></i>
+                <div>
+                    <h4 class="font-bold">${title}</h4>
+                    <p class="text-[11px] opacity-90">${message}</p>
+                </div>
+            `;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        function populatePegawaiCheckboxList() {
+            const container = document.getElementById('pegawaiCheckboxList');
+            container.innerHTML = pegawaiData.map(p => `
+                <label class="flex items-center space-x-2 bg-white p-2 rounded border border-slate-200 hover:bg-slate-100 cursor-pointer">
+                    <input type="checkbox" name="pegawaiSelected" value="${p.id}" class="rounded text-govBlue focus:ring-govBlue">
+                    <div class="text-xs">
+                        <p class="font-bold text-slate-800">${p.nama}</p>
+                        <p class="text-[10px] text-slate-500">${p.gol} | NIP: ${p.nip}</p>
+                    </div>
+                </label>
+            `).join('');
+        }
+
+        function populateRiwayatPegawaiDropdown() {
+            const select = document.getElementById('filterRiwayatPegawai');
+            select.innerHTML = '<option value="ALL">Semua Pegawai (35)</option>' +
+                pegawaiData.map(p => `<option value="${p.id}">${p.nama}</option>`).join('');
+        }
+
+        function renderDashboardStats() {
+            const totalST = suratTugasData.length;
+            const totalSelesai = suratTugasData.filter(s => s.status === 'Selesai').length;
+            const sedangDinas = suratTugasData.filter(s => s.status === 'Disetujui').length;
+            
+            let accumulatedDays = 0;
+            suratTugasData.forEach(st => {
+                const d1 = new Date(st.tglMulai);
+                const d2 = new Date(st.tglSelesai);
+                const days = Math.ceil(Math.abs(d2 - d1) / (1000 * 60 * 60 * 24)) + 1;
+                accumulatedDays += (days * st.pegawaiIds.length);
+            });
+
+            document.getElementById('statTotalST').textContent = totalST;
+            document.getElementById('statTotalSelesai').textContent = totalSelesai;
+            document.getElementById('statSedangDinas').textContent = sedangDinas;
+            document.getElementById('statTotalPegawai').textContent = pegawaiData.length;
+            document.getElementById('statTotalHariDinas').textContent = accumulatedDays + ' Hari';
+
+            // Dashboard Recent Activity Table
+            const recentBody = document.getElementById('dashTableRecent');
+            recentBody.innerHTML = suratTugasData.slice(0, 4).map(st => {
+                const mainPerson = pegawaiData.find(p => p.id === st.pegawaiIds[0])?.nama || 'N/A';
+                const d1 = new Date(st.tglMulai);
+                const d2 = new Date(st.tglSelesai);
+                const durasi = Math.ceil(Math.abs(d2 - d1) / (1000 * 60 * 60 * 24)) + 1;
+                
+                const badge = st.status === 'Disetujui' 
+                    ? '<span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 font-bold rounded text-[10px]">Dinas Aktif</span>'
+                    : (st.status === 'Selesai' 
+                        ? '<span class="px-2 py-0.5 bg-blue-100 text-blue-800 font-bold rounded text-[10px]">Selesai</span>' 
+                        : '<span class="px-2 py-0.5 bg-amber-100 text-amber-800 font-bold rounded text-[10px]">Pending</span>');
+
+                return `
+                    <tr class="hover:bg-slate-50">
+                        <td class="p-2.5 font-bold text-govBlue">${st.noSurat}</td>
+                        <td class="p-2.5 font-medium">${mainPerson} (${st.pegawaiIds.length} Pegawai)</td>
+                        <td class="p-2.5">${st.tujuan}</td>
+                        <td class="p-2.5 font-semibold text-slate-700">${durasi} Hari</td>
+                        <td class="p-2.5">${badge}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function initCharts() {
+            // Chart Bidang
+            const ctxBidang = document.getElementById('chartBidang').getContext('2d');
+            chartBidangInstance = new Chart(ctxBidang, {
+                type: 'bar',
+                data: {
+                    labels: ['Perencanaan & Evaluasi', 'Pemerintahan & Pembangunan', 'Perekonomian & Infrastruktur', 'Sekretariat'],
+                    datasets: [{
+                        label: 'Jumlah Penugasan Dinas',
+                        data: [2, 1, 1, 0],
+                        backgroundColor: '#1E56A0',
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
+                }
+            });
+
+            // Chart Wilayah
+            const ctxWilayah = document.getElementById('chartWilayah').getContext('2d');
+            chartWilayahInstance = new Chart(ctxWilayah, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Dalam Daerah (Kabupaten)', 'Luar Daerah (Provinsi)', 'Luar Daerah (Pusat)'],
+                    datasets: [{
+                        data: [2, 1, 1],
+                        backgroundColor: ['#10B981', '#F59E0B', '#0F2C59']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } } }
+                }
+            });
+
+            // Chart Status
+            const ctxStatus = document.getElementById('chartStatus').getContext('2d');
+            chartStatusInstance = new Chart(ctxStatus, {
+                type: 'pie',
+                data: {
+                    labels: ['Disetujui / Aktif', 'Menunggu Persetujuan', 'Selesai'],
+                    datasets: [{
+                        data: [1, 1, 2],
+                        backgroundColor: ['#10B981', '#F59E0B', '#3B82F6']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } } }
+                }
+            });
+        }
+
+        function refreshDashboard() {
+            renderDashboardStats();
+            if(chartBidangInstance) chartBidangInstance.update();
+            if(chartWilayahInstance) chartWilayahInstance.update();
+            if(chartStatusInstance) chartStatusInstance.update();
+            showToast('Dashboard Diperbarui', 'Statistik dan data grafik perjalanan dinas telah disinkronkan.');
+        }
+
+        // Render Master Data 35 Pegawai Table
+        function renderPegawaiTable() {
+            const tbody = document.getElementById('pegawaiTableBody');
+            tbody.innerHTML = pegawaiData.map((p, idx) => `
+                <tr class="hover:bg-slate-50 transition border-b border-slate-100">
+                    <td class="p-3 text-center font-bold text-slate-500">${idx + 1}</td>
+                    <td class="p-3">
+                        <p class="font-bold text-govNavy">${p.nama}</p>
+                        <p class="text-[10px] text-slate-500">NIP: ${p.nip}</p>
+                    </td>
+                    <td class="p-3 font-semibold text-slate-700">${p.gol}</td>
+                    <td class="p-3 text-slate-800">${p.jabatan}</td>
+                    <td class="p-3"><span class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded text-[10px] font-medium">${p.bidang}</span></td>
+                    <td class="p-3 text-center font-bold text-govBlue">${p.totalDinas} Penugasan</td>
+                    <td class="p-3 text-center font-extrabold text-emerald-600">${p.totalHari} Hari</td>
+                </tr>
+            `).join('');
+        }
+
+        // Render Travel History Log Table
+        function renderRiwayatTable() {
+            const tbody = document.getElementById('riwayatTableBody');
+            const searchVal = document.getElementById('searchRiwayat').value.toLowerCase();
+            const selectedPegawaiId = document.getElementById('filterRiwayatPegawai').value;
+
+            let filtered = suratTugasData.filter(st => {
+                const matchSearch = st.noSurat.toLowerCase().includes(searchVal) ||
+                                    st.maksud.toLowerCase().includes(searchVal) ||
+                                    st.tujuan.toLowerCase().includes(searchVal);
+                const matchPegawai = selectedPegawaiId === 'ALL' || st.pegawaiIds.includes(parseInt(selectedPegawaiId));
+                return matchSearch && matchPegawai;
+            });
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="8" class="text-center py-6 text-slate-400">Tidak ada riwayat perjalanan dinas yang cocok.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = filtered.map((st, idx) => {
+                const pelaksanaList = st.pegawaiIds.map(id => pegawaiData.find(p => p.id === id)?.nama).join('<br>• ');
+                const d1 = new Date(st.tglMulai);
+                const d2 = new Date(st.tglSelesai);
+                const durasi = Math.ceil(Math.abs(d2 - d1) / (1000 * 60 * 60 * 24)) + 1;
+
+                const badgeStatus = st.status === 'Disetujui'
+                    ? '<span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 font-bold rounded text-[10px]">Aktif</span>'
+                    : (st.status === 'Selesai' 
+                        ? '<span class="px-2 py-0.5 bg-blue-100 text-blue-800 font-bold rounded text-[10px]">Selesai</span>'
+                        : '<span class="px-2 py-0.5 bg-amber-100 text-amber-800 font-bold rounded text-[10px]">Pending</span>');
+
+                return `
+                    <tr class="hover:bg-slate-50 transition border-b border-slate-100">
+                        <td class="p-3 text-center font-bold text-slate-500">${idx + 1}</td>
+                        <td class="p-3 font-bold text-govBlue">${st.noSurat}<br><span class="text-[10px] text-slate-400 font-normal">Tgl Surat: ${st.tglSurat}</span></td>
+                        <td class="p-3 text-[11px] font-medium">• ${pelaksanaList}</td>
+                        <td class="p-3 max-w-xs leading-snug">${st.maksud}</td>
+                        <td class="p-3 font-semibold text-slate-700">${st.tujuan}</td>
+                        <td class="p-3 text-[11px]">${st.tglMulai} s/d ${st.tglSelesai}<br><span class="font-bold text-emerald-600">(${durasi} Hari)</span></td>
+                        <td class="p-3 text-center"><span class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded text-[10px]">${st.kategori}</span></td>
+                        <td class="p-3 text-center">${badgeStatus}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function filterRiwayatTable() {
+            renderRiwayatTable();
+        }
+
+        // Render Surat Tugas Admin Table
+        function renderSTTable() {
+            const tbody = document.getElementById('stTableBody');
+            const searchVal = document.getElementById('searchST').value.toLowerCase();
+            const filterStatus = document.getElementById('filterStatusST').value;
+
+            let filtered = suratTugasData.filter(st => {
+                const matchSearch = st.noSurat.toLowerCase().includes(searchVal) ||
+                                    st.maksud.toLowerCase().includes(searchVal) ||
+                                    st.tujuan.toLowerCase().includes(searchVal);
+                const matchStatus = filterStatus === 'ALL' || st.status === filterStatus;
+                return matchSearch && matchStatus;
+            });
+
+            document.getElementById('stCountDisplay').textContent = filtered.length;
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="8" class="text-center py-6 text-slate-400">Tidak ada dokumen Surat Tugas.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = filtered.map((st, idx) => {
+                const pelaksanaList = st.pegawaiIds.map(id => pegawaiData.find(p => p.id === id)?.nama).join('<br>• ');
+                
+                let badgeClass = 'bg-amber-100 text-amber-800';
+                if (st.status === 'Disetujui') badgeClass = 'bg-emerald-100 text-emerald-800';
+                if (st.status === 'Selesai') badgeClass = 'bg-blue-100 text-blue-800';
+
+                return `
+                    <tr class="hover:bg-slate-50 transition border-b border-slate-100">
+                        <td class="p-3 text-center font-bold text-slate-500">${idx + 1}</td>
+                        <td class="p-3 font-bold text-govBlue">${st.noSurat}<br><span class="text-[10px] text-slate-400 font-normal">Tgl: ${st.tglSurat}</span></td>
+                        <td class="p-3 max-w-xs leading-snug">${st.maksud}</td>
+                        <td class="p-3 font-medium text-[11px]">• ${pelaksanaList}</td>
+                        <td class="p-3 font-semibold text-slate-700">${st.tujuan}</td>
+                        <td class="p-3 text-[11px]">${st.tglMulai}<br>s/d ${st.tglSelesai}</td>
+                        <td class="p-3 text-center">
+                            <span class="px-2 py-1 rounded-md font-bold text-[10px] ${badgeClass}">${st.status}</span>
+                        </td>
+                        <td class="p-3 text-center">
+                            <div class="flex items-center justify-center space-x-1">
+                                <button onclick="openPrintModal(${st.id})" title="Cetak Surat Tugas Resmi" class="p-1.5 bg-govNavy text-white rounded hover:bg-govBlue">
+                                    <i class="fa-solid fa-print"></i>
+                                </button>
+                                <button onclick="editST(${st.id})" title="Edit Data" class="p-1.5 bg-amber-500 text-white rounded hover:bg-amber-600">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button>
+                                <button onclick="deleteST(${st.id})" title="Hapus" class="p-1.5 bg-rose-600 text-white rounded hover:bg-rose-700">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function filterSTTable() {
+            renderSTTable();
+        }
+
+        function openFormSTModal(isEdit = false) {
+            document.getElementById('modalFormST').classList.remove('hidden');
+            if(!isEdit) {
+                document.getElementById('modalSTTitle').textContent = 'Input Pengajuan Surat Tugas Baru';
+                document.getElementById('stForm').reset();
+                document.getElementById('formSTIndex').value = '-1';
+            }
+        }
+
+        function closeFormSTModal() {
+            document.getElementById('modalFormST').classList.add('hidden');
+        }
+
+        function handleFormSTSubmit(e) {
+            e.preventDefault();
+            const editIndex = parseInt(document.getElementById('formSTIndex').value);
+            const checkedBoxes = Array.from(document.querySelectorAll('input[name="pegawaiSelected"]:checked')).map(cb => parseInt(cb.value));
+            
+            if (checkedBoxes.length === 0) {
+                showToast('Peringatan', 'Pilih minimal satu pegawai BAPPEDA yang ditugaskan!', 'error');
+                return;
+            }
+
+            const newST = {
+                id: editIndex > 0 ? editIndex : Date.now(),
+                noSurat: document.getElementById('inputNoSurat').value,
+                tglSurat: document.getElementById('inputTglSurat').value,
+                maksud: document.getElementById('inputMaksud').value,
+                tujuan: document.getElementById('inputTujuan').value,
+                kategori: document.getElementById('inputKategori').value,
+                bidang: document.getElementById('inputBidang').value,
+                tglMulai: document.getElementById('inputTglMulai').value,
+                tglSelesai: document.getElementById('inputTglSelesai').value,
+                penandatangan: document.getElementById('inputPenandatangan').value,
+                pegawaiIds: checkedBoxes,
+                status: 'Disetujui'
+            };
+
+            // Calculate days duration for stats update
+            const d1 = new Date(newST.tglMulai);
+            const d2 = new Date(newST.tglSelesai);
+            const days = Math.ceil(Math.abs(d2 - d1) / (1000 * 60 * 60 * 24)) + 1;
+
+            // Increment travel counts for selected employees
+            checkedBoxes.forEach(pid => {
+                const p = pegawaiData.find(x => x.id === pid);
+                if (p && editIndex <= 0) {
+                    p.totalDinas += 1;
+                    p.totalHari += days;
+                }
+            });
+
+            if (editIndex > 0) {
+                const idx = suratTugasData.findIndex(s => s.id === editIndex);
+                if (idx !== -1) suratTugasData[idx] = { ...suratTugasData[idx], ...newST };
+                showToast('Berhasil Diperbarui', 'Data Surat Tugas telah diperbarui.');
+            } else {
+                suratTugasData.unshift(newST);
+                showToast('Surat Tugas Diterbitkan', 'Surat Tugas & SPPD baru berhasil disimpan.');
+            }
+
+            closeFormSTModal();
+            renderSTTable();
+            renderRiwayatTable();
+            renderPegawaiTable();
+            renderDashboardStats();
+        }
+
+        function editST(id) {
+            const st = suratTugasData.find(s => s.id === id);
+            if (!st) return;
+
+            document.getElementById('formSTIndex').value = st.id;
+            document.getElementById('modalSTTitle').textContent = 'Edit Surat Tugas';
+
+            document.getElementById('inputNoSurat').value = st.noSurat;
+            document.getElementById('inputTglSurat').value = st.tglSurat;
+            document.getElementById('inputMaksud').value = st.maksud;
+            document.getElementById('inputTujuan').value = st.tujuan;
+            document.getElementById('inputKategori').value = st.kategori;
+            document.getElementById('inputBidang').value = st.bidang;
+            document.getElementById('inputTglMulai').value = st.tglMulai;
+            document.getElementById('inputTglSelesai').value = st.tglSelesai;
+            document.getElementById('inputPenandatangan').value = st.penandatangan;
+
+            const cbs = document.querySelectorAll('input[name="pegawaiSelected"]');
+            cbs.forEach(cb => {
+                cb.checked = st.pegawaiIds.includes(parseInt(cb.value));
+            });
+
+            openFormSTModal(true);
+        }
+
+        function deleteST(id) {
+            if (confirm('Apakah Anda yakin ingin menghapus data Surat Tugas ini?')) {
+                suratTugasData = suratTugasData.filter(s => s.id !== id);
+                renderSTTable();
+                renderRiwayatTable();
+                renderDashboardStats();
+                showToast('Terhapus', 'Surat Tugas telah dihapus dari sistem.', 'error');
+            }
+        }
+
+        // Print & Official Preview Logic
+        function openPrintModal(id) {
+            const st = suratTugasData.find(s => s.id === id);
+            if (!st) return;
+
+            document.getElementById('printNoSurat').textContent = st.noSurat;
+            document.getElementById('printMaksud').textContent = st.maksud;
+            document.getElementById('printTujuan').textContent = st.tujuan;
+            document.getElementById('printTanggalMulai').textContent = st.tglMulai;
+            document.getElementById('printTanggalSelesai').textContent = st.tglSelesai;
+            document.getElementById('printTglTerbit').textContent = st.tglSurat;
+
+            // Signatory details
+            if (st.penandatangan === 'Dra. Maria A. M. Teme') {
+                document.getElementById('printPenandatanganNama').textContent = 'Dra. Maria A. M. Teme';
+                document.getElementById('printPenandatanganNIP').textContent = '19680517 199403 2 007';
+                document.getElementById('printTtdNamaFooter').textContent = 'Dra. MARIA A. M. TEME';
+                document.getElementById('printTtdGolFooter').textContent = 'Pembina Utama Muda IV/c';
+                document.getElementById('printTtdNipFooter').textContent = 'NIP. 19680517 199403 2 007';
+            } else {
+                document.getElementById('printPenandatanganNama').textContent = 'Karolus Din, S.S.';
+                document.getElementById('printPenandatanganNIP').textContent = '19780105 200501 1 011';
+                document.getElementById('printTtdNamaFooter').textContent = 'KAROLUS DIN, S.S.';
+                document.getElementById('printTtdGolFooter').textContent = 'Pembina IV/a';
+                document.getElementById('printTtdNipFooter').textContent = 'NIP. 19780105 200501 1 011';
+            }
+
+            const d1 = new Date(st.tglMulai);
+            const d2 = new Date(st.tglSelesai);
+            const diffDays = Math.ceil(Math.abs(d2 - d1) / (1000 * 60 * 60 * 24)) + 1;
+            document.getElementById('printLamaHari').textContent = diffDays;
+
+            // Render Officers Table for Print
+            const printBody = document.getElementById('printPegawaiList');
+            printBody.innerHTML = st.pegawaiIds.map((pid, idx) => {
+                const p = pegawaiData.find(x => x.id === pid);
+                return `
+                    <tr>
+                        <td class="border border-black p-1.5 text-center">${idx + 1}</td>
+                        <td class="border border-black p-1.5 font-bold">${p ? p.nama : 'N/A'}<br><span class="font-normal">NIP. ${p ? p.nip : ''}</span></td>
+                        <td class="border border-black p-1.5">${p ? p.gol : ''}</td>
+                        <td class="border border-black p-1.5">${p ? p.jabatan : ''}</td>
+                    </tr>
+                `;
+            }).join('');
+
+            document.getElementById('modalPrintPreview').classList.remove('hidden');
+        }
+
+        function closePrintModal() {
+            document.getElementById('modalPrintPreview').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
